@@ -1,0 +1,1284 @@
+//validation
+
+import React from 'react'
+class App extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = {
+       sname: '',
+       marks: null,
+     };
+   }
+   mySubmitHandler = (event) => {
+     event.preventDefault();
+     let sname=this.state.sname;
+     if(sname.length<3)
+     { if(sname==="") {
+        alert("Studnet Name should be minimum above 3 characters")
+     }
+   }
+
+     let marks = this.state.marks;
+     if (!Number(marks)) {
+       alert("Marks must be a number");
+     }
+   }
+   myChangeHandler = (event) => {
+     let nam = event.target.name;
+     let val = event.target.value;
+     this.setState({[nam]: val});
+   }
+   render() {
+     return (
+       <form onSubmit={this.mySubmitHandler}>
+       <h1> Student details : {this.state.sname} {this.state.marks}</h1>
+       <p>Enter student name:</p>
+       <input
+         type='text'
+         name='sname'
+         onChange={this.myChangeHandler}
+       />
+       <p>Enter your Marks:</p>
+       <input
+         type='text'
+         name='marks'
+         onChange={this.myChangeHandler}
+       />
+       <br/>
+       <br/>
+       <input type='submit' />
+       </form>
+     );
+   }
+ }
+export default App
+
+
+
+
+
+
+/*
+ let sname=this.state.sname;
+   if(sname.length<3 || sname==="") {
+      alert("Studnet Name should be minimum above 3 characters")
+   }
+    
+
+*/
+/*import React, { Component } from 'react';
+class App extends Component {
+   constructor() {
+      super();
+      this.state={ename:"Ram",department:"IT",designation:"SE"}
+   }
+  render() {
+    return (
+      <div className="App">
+
+           <h1> { this.state.ename}  </h1> 
+           <h1> { this.state.department}  </h1>
+           <h1> { this.state.designation}  </h1>
+
+
+         <FormDemo/>
+
+         <Clock/>
+      </div>
+    );
+  }
+}
+export default App;
+
+
+class Clock extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = {date: new Date()};  // creates a current system date date and time
+   }
+ 
+   render() {
+     return (
+       <div>
+         
+         <h2>It is now:  {this.state.date.toLocaleTimeString() }.</h2>
+       </div>
+     );
+   }
+ }
+
+
+
+
+
+
+// creating simple form in react   FromDemo.js
+
+class FormDemo extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = {
+       isGoing: false,
+       numberOfGuests: 2
+     };
+ 
+     this.handleInputChange = this.handleInputChange.bind(this);
+   }
+ 
+   handleInputChange(event) {
+     const target = event.target;
+     const value = target.type === 'checkbox' ? target.checked : target.value;
+     const name = target.name;
+ 
+     this.setState({
+       [name]: value
+     });
+   }
+ 
+   render() {
+     return (
+       <form>
+         <label>
+           Is going:
+           <input
+             name="isGoing"
+             type="checkbox"
+             checked={this.state.isGoing}
+             onChange={this.handleInputChange} />
+         </label>
+         <br />
+         <label>
+           Number of guests:
+           <input
+             name="numberOfGuests"
+             type="number"
+             value={this.state.numberOfGuests}
+             onChange={this.handleInputChange} />
+         </label>
+       </form>
+     );
+   }
+ }
+*/
+/*
+import React, { Component } from 'react';
+
+const myList = ['Peter', 'Sachin', 'Kevin', 'Dhoni', 'Alisa'];   
+const listItems = myList.map((myList)=>{   
+    return <li>{myList}</li>;   
+});   
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        
+    }
+    
+ 
+    handleChange = (newText) => {
+        console.log(newText);
+      
+    }
+    render() {
+        return (
+        
+            <div className="App2">
+                <div className="container">
+                   <h1 style= {{ color: "Green"}}> title </h1>
+        <p> <ol>{listItems}</ol></p>
+                    <input type="text"
+                        placeholder="Your message here.."
+                     nChange={(event) => this.handleChange(event.target.value)}
+                    />
+
+                    <NameForm/>
+                </div>
+            </div>
+            
+        );
+    }
+}
+
+class NameForm extends React.Component {
+   constructor(props) {
+     super(props);
+     this.handleSubmit = this.handleSubmit.bind(this);
+   }
+ 
+   handleSubmit(event) {
+     alert('A name was submitted: ' + this.input.value);
+     event.preventDefault();
+   }
+ 
+   render() {
+     return (
+       <form onSubmit={this.handleSubmit}>
+         <label>
+           Name:
+           <input type="text" ref={(input) => this.input = input} />
+         </label>
+         <input type="submit" value="Submit" />
+       </form>
+     );
+   }
+ }
+export default App;
+
+*/
+/*
+//Uncontrolled component
+import React, { useRef } from "react";
+	
+	export default function App() {
+	  const inputRef = useRef(null);
+	  const handleSubmitButton = () => {
+	    alert(inputRef.current.value);
+	  };
+	  return (
+	    <div className="App">
+	      <input type="text" ref={inputRef} />
+	      <input type="submit" value="submit" onClick={handleSubmitButton} />
+	    </div>
+	  );
+	}
+
+*/
+/* controlled component with setState() 
+
+import React, { Component } from 'react';
+class App extends Component {
+    state = {
+        message: ''
+    }
+    updateMessage = (newText) => {
+        console.log(newText);
+        this.setState(() => ({
+            message: newText
+        }));
+    }
+    render() {
+        return (
+            <div className="App">
+                <div className="container">
+                    <input type="text"
+                        placeholder="Your message here.."
+                        value={this.state.message}
+                        onChange={(event) => this.updateMessage(event.target.value)}
+                    />
+                    <p>the message is: {this.state.message}</p>
+                </div>
+            </div>
+        );
+    }
+}
+export default App;
+
+*/
+
+/*
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      
+      this.state = {
+         data: 0
+      }
+      this.setNewNumber = this.setNewNumber.bind(this)
+   };
+   setNewNumber() {
+      this.setState({data: this.state.data + 1})
+   }
+   render() {
+      return (
+         <div>
+            <button onClick = {this.setNewNumber}>INCREMENT</button>
+            <Content myNumber = {this.state.data}></Content>
+         </div>
+      );
+   }
+}
+class Content extends React.Component {
+   constructor(props) {
+      super(props)
+      console.log("component initialized")
+   }
+   componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {    
+      console.log('Component WILL RECIEVE PROPS!')
+   }
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+   render() {
+      return (
+         <div>
+            <h3>{this.props.myNumber}</h3>
+         </div>
+      );
+   }
+}
+export default App;
+
+*/
+
+
+/*import React, { Component } from 'react';  
+  
+class App extends Component {  
+  constructor(props){    // first step of component lifecycle
+    super(props);  
+    this.state = {  
+         data: 'React Tutorial '  
+         duration:'10'
+      }  
+    this.handleEvent = this.handleEvent.bind(this);  
+  }  
+  handleEvent(){  
+    console.log(this.props);  
+  }  
+  render() {  
+    return (  
+      <div className="App">  
+    <h2>React Constructor Example</h2>  
+    <input type ="text" value={this.state.data} />  
+        <button onClick={this.handleEvent}>Please Click</button>  
+      </div>  
+    );  
+  }  
+}  
+export default App;  
+*/
+//Select box demo
+/*
+import React from 'react';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  render() {
+    return (
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    );
+  }
+}
+
+export default App;*/
+/*
+import React, {Component} from 'react';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: 'coconut'};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavor is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite La Croix flavor:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+export default App;
+*/
+/*import React, { Component } from 'react';
+
+
+class App extends Component {
+  render() {
+    return (
+      <div >
+      
+
+        <FormDemo/>
+      </div>
+    );
+  }
+}
+export default App;
+
+
+
+
+
+
+// creating simple form in react   FromDemo.js
+
+
+class FormDemo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+
+<h1>Username given by you  {this.state.value}</h1>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+*/
+/*
+import React from 'react'
+
+class App extends React.Component {
+   render() {
+      return (
+                <div>
+                    <MyForm/>
+
+                </div>
+      );
+   }
+}
+class MyForm extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = { username: '' };
+   }
+   updateUSerName = (event) => {
+     this.setState({username: event.target.value});
+   }
+   submit =() => {
+     alert("submitted...")
+   }
+   render() {
+     return (
+       <form>
+       <h1>Username given by you  {this.state.username}</h1>
+       <p>Enter your name:</p>
+       <input type='text'  onChange={this.updateUSerName} />
+       <button onClick={this.submit}> Submit </button>
+       </form>
+     );
+   }
+ }
+export default App*/
+
+/*import React from 'react'
+
+class App extends React.Component {
+   render() {
+      return (
+                <div>
+                    <MyForm/>
+
+                </div>
+      );
+   }
+}
+class MyForm extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = { username: '' };
+   }
+   updateUSerName = (event) => {
+     this.setState({username: event.target.value});
+   }
+   submit =() => {
+     alert("submitted...")
+   }
+   render() {
+     return (
+       <form>
+       <h1>Username given by you  {this.state.username}</h1>
+       <p>Enter your name:</p>
+       <input type='text'  onChange={this.updateUSerName} />
+       <button onClick={this.submit}> Submit </button>
+       </form>
+     );
+   }
+ }
+export default App
+
+*/
+/*
+// event handling
+import React from 'react';
+class App extends React.Component {
+   render() {
+      return ( 
+         <div>
+          <EventComponent/>
+         </div>
+       );
+   }
+}
+class EventComponent extends React.Component {
+  shoot() {
+    alert("Great Shot!");
+  }
+  render() {
+    return (
+      <button onClick={this.shoot}>Take the shot!</button>
+    );
+  }
+}
+export default App
+
+*/
+/* 
+import React from 'react';
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state={ename:"Ram",department:"IT"}
+      
+      this.submit = this.submit.bind(this);
+   }
+   submit() {
+        console.log(this.state.ename  );
+        
+        console.log(this.state.department );
+   }
+   
+   render() {
+      return ( 
+         <div>
+         <form >
+              employee Name : <input type="text" onChange={ this.state.ename}></input> 
+              employee department: <input type="text" onChange={ this.state.department}></input>
+              <button onClick={this.submit}> Submit Emoplyee details</button>
+         </form>
+         </div>
+      
+      );
+   }
+  
+}
+export default App
+
+
+*/
+ // constructor example 
+/*
+import React from 'react';
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state={ename:"Ram",department:"IT",date : new Date()}
+      
+   }
+   
+   render() {
+      return ( 
+         <div>
+             <h2> employee Name : { this.state.ename} </h2>
+             <h2> employee department: { this.state.department}</h2>
+
+      <h1> Current time : {this.state.date.toLocaleTimeString()  }</h1>
+         </div>
+      
+      );
+   }
+  
+}
+export default App
+
+*/
+//ReactDOM.render(<App />, document.getElementById('root'));
+/*
+import React, { Component } from 'react';
+
+
+class App extends Component {
+   submit = () => {
+      console.log("submit..");
+   }
+  render() {
+    return (
+      <div >
+        <button onClick={this.submit}>
+           clickHere
+        </button>
+        <Clock/>
+       <LoggingButton/>
+       <FormDemo/>
+        
+      </div>
+    );
+  }
+}
+class LoggingButton extends React.Component {
+   // This syntax ensures `this` is bound within handleClick.
+   // Warning: this is *experimental* syntax.
+   handleClick = () => {
+     console.log('this is:', this);
+   }
+ 
+   render() {
+     return (
+       <button onClick={this.handleClick}>
+         Click me
+       </button>
+     );
+   }
+ }
+
+*/
+
+/*
+class FormDemo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  render() {
+    return (
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    );
+  }
+}
+
+
+
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        
+        <h2>It is now:  {this.state.date.toLocaleTimeString() }.</h2>
+      </div>
+    );
+  }
+}
+
+export default App;
+*/
+/*import React from 'react';
+import './App.css';
+function App() {  //root stateless
+   this.state = {  //mutable
+      nameOfStudent="Arul",
+      address="US"
+   }
+  return (                        //JSX  props immutable  ,expression  {  }
+             <div>
+                  <h1> first reatc app</h1>
+                  <div>
+                   <h1> {this.state.nameOfStudent }     {this.state.address} </h1>  
+                   </div>
+                 <Login coursename="react" duration="20"/>
+
+
+                 <Header props.name
+              </div>
+           
+
+         );
+}
+
+export default App;
+function Login(props) {
+return (
+   <div>
+         <h1> Login Component</h1>
+          courseName : <h1>  {props.coursename}  </h1>
+         duration :  <h1>  {props.duration}  </h1>
+
+         <Header name="ReactJS" id="101"/>
+   </div>
+);
+
+}
+*/
+/*
+
+function Header(props) {
+   return (           
+          <div> <Header name="maxx" id="101" duartion="5"/>
+              <h1> in first child component : Header </h1>
+               <Footer name = {props.name} id = {props.id}   {props.duration}  />
+          </div>
+   );
+}
+function Footer(props) {
+   return (             
+          <div>  
+             <table>
+             <form>          
+              <h1> Welcome : {props.name}</h1>             
+           <h1> Id is : {props.id}</h1>
+
+           </form> 
+           </table>
+          </div>
+ );
+}
+
+*/
+
+/*
+import React, { Component } from 'react';  
+import PropTypes from 'prop-types';  
+class App extends React.Component {  
+     render() {  
+      return (  
+          <div>  
+              <h1>ReactJS Props validation example</h1>  
+              <table>  
+                  <tr>  
+                      <th>Type</th>  
+                      <th>Value</th>  
+                      <th>Valid</th>  
+                  </tr>  
+                <tr>  
+                      <td>Array</td>  
+                      <td>{this.props.propArray}</td>  
+                      <td>{this.props.propArray ? "true" : "False"}</td>  
+                  </tr>  
+                  <tr>  
+                      <td>Boolean</td>  
+                      <td>{this.props.propBool ? "true" : "False"}</td>  
+                      <td>{this.props.propBool ? "true" : "False"}</td>  
+                  </tr>  
+                  <tr>  
+                      <td>Function</td>  
+                      <td>{this.props.propFunc(5)}</td>  
+                      <td>{this.props.propFunc(5) ? "true" : "False"}</td>  
+                  </tr>  
+                  <tr>  
+                      <td>String</td>  
+                      <td>{this.props.propString}</td>  
+                      <td>{this.props.propString ? "true" : "False"}</td>  
+                  </tr>  
+                  <tr>  
+                      <td>Number</td>  
+                      <td>{this.props.propNumber}</td>  
+                      <td>{this.props.propNumber ? "true" : "False"}</td>  
+                  </tr>  
+             </table>  
+        </div>  
+        );  
+   }  
+}  
+App.propTypes = {  
+    propArray: PropTypes.array.isRequired,  
+    propBool: PropTypes.bool.isRequired,  
+    propFunc: PropTypes.func,  
+    propNumber: PropTypes.number,  
+    propString: PropTypes.string,   
+}  
+App.defaultProps = {  
+    propArray: [],  
+    propBool: false,  
+    propFunc: function(x){return x*x},  
+    propNumber: "kkk",  
+    propString: 99,  
+}  
+export default App;  
+*/
+/*
+import React from 'react';  
+class App extends React.Component {   //stateful
+ constructor() {  
+      super();  
+      this.state = {  
+         name:String="Ractuser",
+        address:String ="Hyd",
+         data:   
+         [   {             
+               "name":"Abhishek" ,
+               "mobile":"989786756"            
+            },  
+            {            
+               "name":"Saharsh"  ,
+               "mobile":"989786756"               
+            },  
+            {    
+               "name":"Ajay"   ,
+               "mobile":"989786756"           
+            }  ,
+            {    
+               "name":"Akshay" ,
+               "mobile":"989786756"            
+            }  
+         ]  
+      }  
+   }  
+   
+   render() {  
+      return (  
+         <div>  
+
+
+            <StudentName/>     
+      <h1>{ this.props.coursename}</h1>
+
+               <p> {this.state.name}  | {this.state.address} </p>   
+            <ul>            
+                {this.state.data.map((item) => <List data = {item} />)} 
+                   
+            </ul>  
+         </div>  
+      );  
+   }  
+}  
+
+App.defaultProps = {
+   coursename:"ReactTutorial"
+}
+
+//child1
+class StudentName extends React.Component {  
+   render() {  
+      return (  
+         <div>  
+            <h1>Student Name Detail</h1>  
+         </div>  
+      );  
+   }  
+}  
+//child2
+class List extends React.Component {  
+   render() {  
+      return (  
+         <ul>            
+            <li> {this.props.data.name} |  {this.props.data.mobile}</li>   
+         </ul>  
+      );  
+   }  
+}  
+
+
+export default App;  
+
+*/
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+import React from 'react';
+import './App.css';
+
+//function App() { //functional componnets   // stateless
+
+
+ // return (
+
+   class App extends React.Component {  
+      render() {  
+         return (  
+            <div>  
+               <First/>  
+               <Second/>  
+            </div>  
+         );  
+      }  
+   }                  //class components
+class First extends React.Component {  
+   
+  render() {  
+     return (  
+        <div>  
+           <h1> React First Component</h1>  
+             <ol>
+                <li>UI DEv</li>
+             </ol>
+        </div>  
+     );  
+  }  
+}  
+class Second extends React.Component {  
+
+
+
+  render() {  
+     return (  
+        <div>  
+           <h2>React Second Component</h2>  
+             <ol>
+                <li>UI Testing</li>
+             </ol>
+        </div>  
+     );  
+  }  
+}  
+
+
+export default App;
+
+*/
+/*  App2  - state 
+import React, { Component } from 'react';  
+class App extends React.Component {  
+ constructor() {  
+      super();  
+      this.state = {  
+         data:   
+         [  
+            {             
+               "name":"Abhishek"             
+            },  
+            {            
+               "name":"Saharsh"             
+            },  
+            {    
+               "name":"Ajay"          
+            }  
+         ]  
+      }  
+   }  
+   render() {  
+      return (  
+         <div>  
+            <StudentName/>  
+            <ul>            
+                {this.state.data.map((item) => <List data = {item} />)}           
+            </ul>  
+         </div>  
+      );  
+   }  
+}  
+class StudentName extends React.Component {  
+   render() {  
+      return (  
+         <div>  
+            <h1>Student Name Detail</h1>  
+         </div>  
+      );  
+   }  
+}  
+class List extends React.Component {  
+   render() {  
+      return (  
+         <ul>            
+            <li>{this.props.data.name}</li>   
+         </ul>  
+      );  
+   }  
+}  
+export default App;  
+
+*/
+// App3   --state
+/*
+import React, { Component } from 'react';  
+class App extends React.Component {  
+ constructor() {  
+      super();        
+      this.state = { displayBio: false };  
+      console.log('Component this', this);  
+      this.toggleDisplayBio = this.toggleDisplayBio.bind(this);  
+      }  
+      toggleDisplayBio(){  
+          this.setState({displayBio: !this.state.displayBio});  
+          }  
+      render() {  
+          return (  
+              <div>  
+                  <h1>Welcome to React Programming !!</h1>  
+                  {  
+                      this.state.displayBio ? (   
+                          <div>  
+                              <p><h4>React is a front-end library developed by Facebook. 
+
+It is used for handling the view layer for web and mobile apps. 
+
+ReactJS allows us to create reusable UI components..</h4></p>  
+                              <button onClick={this.toggleDisplayBio}> Show Less </button>  
+                        </div>  
+                          ) : (  
+                              <div>  
+                                  <button onClick={this.toggleDisplayBio}> Read More </button>  
+                              </div>  
+                          )  
+                  }  
+             </div>  
+        )  
+    }  
+}  
+export default App;  
+
+*/
+/*
+import React from 'react';
+
+class App extends React.Component {
+
+
+   render() {
+      return (
+         <div>
+           <h1> State and Props</h1>
+         </div>
+      );
+   }
+}
+export default App;
+*/
+//Forms 
+/*
+import React, { Component } from 'react';  
+class App extends React.Component {  
+  constructor(props) {  
+      super(props);  
+      this.updateSubmit = this.updateSubmit.bind(this);  
+      this.input = React.createRef();  
+  }  
+  updateSubmit(event) {  
+      alert('You have entered the UserName and CompanyName successfully.');  
+      event.preventDefault();  
+  }  
+  render() {  
+    return (  
+      <form onSubmit={this.updateSubmit}>  
+        <h1>Uncontrolled Form Example</h1>  
+        <label>Name:  
+            <input type="text" ref={this.input} />  
+        </label>  
+        <label>  
+            CompanyName:  
+            <input type="text" ref={this.input} />  
+        </label>  
+        <input type="submit" value="Submit" />  
+      </form>  
+    );  
+  }  
+}  
+export default App;  
+*/
+//Events
+/*
+import React from 'react';  
+class App extends React.Component {  
+    constructor(props) {  
+        super(props);  
+        this.state = {  
+            companyName: ''  
+        };  
+    }  
+    changeText(event) {  
+        this.setState({  
+            companyName: event.target.value  
+        });  
+    }  
+    render() {  
+        return (  
+            <div>  
+                <h2>Simple Event Example</h2>  
+                <label htmlFor="name">Enter company name: </label>  
+                <input type="text" id="companyName" onChange={this.changeText.bind(this)}/>  
+                <h4>You entered: { this.state.companyName }</h4>  
+            </div>  
+        );  
+    }  
+}  
+export default App;  
+
+*/
+
+//life cycle demo
+/*
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      
+      this.state = {
+         data: 0
+      }
+      this.setNewNumber = this.setNewNumber.bind(this)
+   };
+   setNewNumber() {
+      this.setState({data: this.state.data + 1})
+   }
+   render() {
+      return (
+         <div>
+            <button onClick = {this.setNewNumber}>INCREMENT</button>
+            <Content myNumber = {this.state.data}></Content>
+         </div>
+      );
+   }
+}
+class Content extends React.Component {
+   componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+   componentWillReceiveProps(newProps) {    
+      console.log('Component WILL RECIEVE PROPS!')
+   }
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+   render() {
+      return (
+         <div>
+            <h3>{this.props.myNumber}</h3>
+         </div>
+      );
+   }
+}
+export default App;
+
+*/
