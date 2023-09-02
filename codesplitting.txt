@@ -1,0 +1,36 @@
+MyComp.js
+==============
+
+import React from 'react'
+export default () => {
+    return(
+<div>
+<hr/>
+
+<hr/><hr/><hr/><hr/>
+
+<h1> Hi MyComp </h1>
+</div>
+    );
+}
+
+
+App.js
+========
+import React,{Component,lazy, Suspense} from 'react'
+const MyComp = lazy( () =>  import('./MyComp'));
+class App extends Component {
+  render() {
+    return (
+        <div>
+          <Suspense fallback={<div> <h1>Loading...</h1></div>}>
+            <div>
+            </div>
+           <MyComp/>
+          </Suspense>
+        </div>  
+    );
+
+  }
+}
+export default App

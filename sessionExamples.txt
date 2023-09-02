@@ -1,0 +1,102 @@
+// contrructor 
+
+
+import React from 'react';
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state={ename:"Ram",department:"IT"}
+   }
+   render() {
+      return ( 
+         <div>
+             <h2> employee Name : { this.state.ename} </h2>
+             <h2> employee department: { this.state.department}</h2>
+         </div>
+      
+      );
+   }
+  
+}
+export default App
+
+
+=======================
+import React from 'react';
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state={ename:"Ram",department:"IT",date : new Date()}
+      
+   }
+   
+   render() {
+      return ( 
+         <div>
+             <h2> employee Name : { this.state.ename} </h2>
+             <h2> employee department: { this.state.department}</h2>
+
+      <h1> Current time : {this.state.date.toLocaleTimeString()  }</h1>
+         </div>
+      
+      );
+   }
+  
+}
+export default App
+=======================
+
+//
+import React, { Component } from 'react';
+
+
+class App extends Component {
+   submit = () => {
+      console.log("submit..");
+   }
+  render() {
+    return (
+      <div >
+        <button onClick={this.submit}>
+           clickHere
+        </button>
+        <Clock/>
+       <LoggingButton/>
+      
+        
+      </div>
+    );
+  }
+}
+class LoggingButton extends React.Component {
+  handleClick = () => {
+     console.log('this is:', this);
+   }
+ 
+   render() {
+     return (
+       <button onClick={this.handleClick}>
+         Click me
+       </button>
+     );
+   }
+ }
+
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        
+        <h2>It is now:  {this.state.date.toLocaleTimeString() }.</h2>
+      </div>
+    );
+  }
+}
+
+export default App;
